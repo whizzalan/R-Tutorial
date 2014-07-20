@@ -1,0 +1,10 @@
+base
+datasets
+graphics
+grDevices
+knitr
+methods
+mgcv
+nlme
+stats
+utils

@@ -1,0 +1,17 @@
+Title
+========================================================
+
+```{r cache=TRUE}
+library(mgcv) #provides functions for generalized additive modelling
+dat1 <- readRDS("C:\\Users\\GeorgeChao\\Documents\\study-area-statR\\dat1.rds")
+colnames(dat1) <- iconv(colnames(dat1),"UTF-8")
+dat1 <- as.data.frame(apply(dat1,2,iconv,"UTF-8"))
+#dat1
+#nrow(dat1)
+# fit linear model
+g1 <- lm(log10(總價)~面積+車位+屋齡+行政區+floor, data=dat1)
+# fit addiive model with two smooth terms
+g2 <- gam(log10(總價)~s(面積)+車位+s(屋齡)+行政區+floor, data=dat1)
+# Compare adjusted R-squared, 越趨近1模型配適度越好
+data.frame("linear model"=summary(g1)$adj.r.sq, "additive model"=summary(g2)$r.sq)
+```
